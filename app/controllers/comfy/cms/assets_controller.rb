@@ -1,11 +1,11 @@
 class Comfy::Cms::AssetsController < Comfy::Cms::BaseController
 
-  skip_before_action :verify_authenticity_token
+  skip_before_filter :verify_authenticity_token
 
-  before_action :load_cms_layout,
+  before_filter :load_cms_layout,
                 :use_null_session
 
-  after_action :set_cache_control_header
+  after_filter :set_cache_control_header
 
   def render_css
     render :text => @cms_layout.css, :content_type => 'text/css'

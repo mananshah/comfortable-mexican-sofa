@@ -67,7 +67,7 @@ class ViewMethodsTest < ActionView::TestCase
       ]
     )
 
-    block = @cms_page.blocks.find_by(:identifier => 'files')
+    block = @cms_page.blocks.find_by_indentifier('files')
     assert_equal block.files, cms_block_content(:files)
     assert_equal 2, block.files.count
 

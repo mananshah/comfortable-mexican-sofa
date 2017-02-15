@@ -20,7 +20,7 @@ module ComfortableMexicanSofa::Fixture::Page
             attrs = get_attributes(attrs_path)
 
             page.label        = attrs['label']
-            page.layout       = site.layouts.find_by(:identifier => attrs['layout']) || parent.try(:layout)
+            page.layout       = site.layouts.find_by_identifier(attrs['layout']) || parent.try(:layout)
             page.is_published = attrs['is_published'].nil?? true : attrs['is_published']
             page.position     = attrs['position'] if attrs['position']
 
