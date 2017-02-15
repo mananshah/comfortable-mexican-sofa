@@ -1,12 +1,12 @@
 class Comfy::Cms::AssetsController < Comfy::Cms::BaseController
-  
+
   skip_before_action :verify_authenticity_token
-  
+
   before_action :load_cms_layout,
                 :use_null_session
-                
+
   after_action :set_cache_control_header
-  
+
   def render_css
     render :text => @cms_layout.css, :content_type => 'text/css'
   end
@@ -22,7 +22,7 @@ protected
   rescue ActiveRecord::RecordNotFound
     render :nothing => true, :status => 404
   end
-  
+
   # null_session avoids cookies and flash updates
   def use_null_session
     ActionController::RequestForgeryProtection::ProtectionMethods::NullSession.new(self)
@@ -34,5 +34,5 @@ protected
       response.headers['Cache-Control'] = "public, max-age=#{1.year.to_i}"
     end
   end
-  
+
 end

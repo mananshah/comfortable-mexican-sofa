@@ -1,6 +1,6 @@
 class Comfy::Admin::Cms::BaseController < ComfortableMexicanSofa.config.base_controller.to_s.constantize
 
-  include Comfy::Paginate
+  #include Comfy::Paginate
 
   # Authentication module must have `authenticate` method
   include ComfortableMexicanSofa.config.admin_auth.to_s.constantize
@@ -10,7 +10,7 @@ class Comfy::Admin::Cms::BaseController < ComfortableMexicanSofa.config.base_con
 
   protect_from_forgery
 
-  before_action :authenticate,
+  before_filter :authenticate,
                 :load_admin_site,
                 :set_locale,
                 :load_fixtures,
@@ -53,6 +53,16 @@ protected
     if controllers.member?(params[:controller]) && params[:action] == 'index'
       ComfortableMexicanSofa::Fixture::Importer.new(@site.identifier).import!
       flash.now[:danger] = I18n.t('comfy.admin.cms.base.fixtures_enabled')
+    end
+  end
+
+  def comfy_paginate(scope, per_page = 50)
+    if defined?(WillPaginate)
+      scope.paginate(:page => params[:page], :per_page => per_page)
+    elsif defined?(Kaminari)
+      scope.page(params[:page]).per(per_page)
+    else
+      scope
     end
   end
 end

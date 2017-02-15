@@ -14,6 +14,7 @@ require 'coffee-rails'
 require 'codemirror-rails'
 #require 'bootstrap-sass'
 require 'plupload-rails'
+require 'bootstrap_form'
 
 module ComfortableMexicanSofa
   class Engine < ::Rails::Engine

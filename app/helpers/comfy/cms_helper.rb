@@ -4,8 +4,7 @@ module Comfy::CmsHelper
   def comfy_form_for(record, options = {}, &proc)
     options[:builder] = ComfortableMexicanSofa::FormBuilder
     options[:layout] ||= :horizontal
-    #bootstrap_form_for(record, options, &proc)
-    form_for(record, options, &proc)
+    bootstrap_form_for(record, options, &proc)
   end
 
   # Injects some content somewhere inside cms admin area

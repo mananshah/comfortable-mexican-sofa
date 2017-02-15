@@ -1,4 +1,4 @@
-class ComfortableMexicanSofa::FormBuilder < ActionView::Helpers::FormBuilder
+class ComfortableMexicanSofa::FormBuilder < BootstrapForm::FormBuilder
 
   def field_name_for(tag)
     tag.blockable.class.name.demodulize.underscore.gsub(/\//,'_')

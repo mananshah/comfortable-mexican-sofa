@@ -2,9 +2,9 @@ class Comfy::Admin::Cms::FilesController < Comfy::Admin::Cms::BaseController
 
   include ActionView::Helpers::NumberHelper
 
-  before_action :build_file,  :only => [:new, :create]
-  before_action :load_file,   :only => [:edit, :update, :destroy]
-  before_action :authorize
+  before_filter :build_file,  :only => [:new, :create]
+  before_filter :load_file,   :only => [:edit, :update, :destroy]
+  before_filter :authorize
 
   def index
     case params[:source]
