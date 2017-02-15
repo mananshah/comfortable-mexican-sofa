@@ -13,7 +13,7 @@ class ActionDispatch::Routing::Mapper
               get  :toggle_branch,  :on => :member
               put :reorder,         :on => :collection
               resources :revisions, :only => [:index, :show, :revert] do
-                patch :revert, :on => :member
+                put :revert, :on => :member
               end
             end
             resources :files do
@@ -22,13 +22,13 @@ class ActionDispatch::Routing::Mapper
             resources :layouts do
               put :reorder, :on => :collection
               resources :revisions, :only => [:index, :show, :revert] do
-                patch :revert, :on => :member
+                put :revert, :on => :member
               end
             end
             resources :snippets do
               put :reorder, :on => :collection
               resources :revisions, :only => [:index, :show, :revert] do
-                patch :revert, :on => :member
+                put :revert, :on => :member
               end
             end
             resources :categories
