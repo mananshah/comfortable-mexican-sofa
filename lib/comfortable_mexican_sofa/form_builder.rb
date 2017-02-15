@@ -1,4 +1,4 @@
-class ComfortableMexicanSofa::FormBuilder < BootstrapForm::FormBuilder
+class ComfortableMexicanSofa::FormBuilder < ActionView::Helpers::FormBuilder
 
   def field_name_for(tag)
     tag.blockable.class.name.demodulize.underscore.gsub(/\//,'_')
@@ -29,7 +29,7 @@ class ComfortableMexicanSofa::FormBuilder < BootstrapForm::FormBuilder
     end
     content << @template.hidden_field_tag("#{fieldname}[blocks_attributes][#{index}][identifier]", tag.identifier, :id => nil)
 
-    form_group :label => {:text => label} do 
+    form_group :label => {:text => label} do
       content.html_safe
     end
   end
@@ -59,7 +59,7 @@ class ComfortableMexicanSofa::FormBuilder < BootstrapForm::FormBuilder
     content = @template.hidden_field_tag("#{fieldname}[blocks_attributes][#{index}][content]", '', :id => nil)
     content << @template.check_box_tag("#{fieldname}[blocks_attributes][#{index}][content]", '1', tag.content.present?, :id => nil)
     content << @template.hidden_field_tag("#{fieldname}[blocks_attributes][#{index}][identifier]", tag.identifier, :id => nil)
-    form_group :label => {:text => (tag.blockable.class.human_attribute_name(tag.identifier.to_s) || tag.identifier.titleize + "?")} do 
+    form_group :label => {:text => (tag.blockable.class.human_attribute_name(tag.identifier.to_s) || tag.identifier.titleize + "?")} do
       content
     end
   end
